@@ -1,0 +1,29 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Marks all files that are removed from the filesystem for deletion in"
+	echo "        subversion."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "      `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "      -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "      `basename $0`"
+	echo ""
+	exit 0
+fi
+
+files=`svn st | grep ! | sed 's/\! / /' | xargs svn delete`
+
+# print some output that looks like svn’s
+for i in $files; do
+	length=`echo ${#i}`
+	if [[ $length > 1 ]]; then
+		echo D\ \ \ \ \ \ $i
+	fi
+done
