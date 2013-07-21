@@ -1,0 +1,21 @@
+alias rm='rm -i'
+
+alias ls='ls -G'
+alias la='ls -a'
+alias ll='ls -l'
+alias lg='ls -g'
+alias lal='ls -al'
+alias lla='lal'
+alias lag='ls -ag'
+alias lga='lag'
+
+alias brc='edit ~/.bin/bashrc'
+alias src='source ~/.bash_profile'
+
+alias sag='sudo apachectl graceful'
+
+alias size='du -s -h'
+
+alias findname='find . -name'
+
+alias flushdns='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
