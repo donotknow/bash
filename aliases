@@ -16,7 +16,9 @@ alias sag='sudo apachectl graceful'
 
 alias size='du -s -h'
 alias kext='kextstat >> ~/Desktop/kextstat'
+
 alias applypatch='patch -p0 -i'
+alias diffiles='diff -qrN'
 
 alias findname='find . -name'
 
