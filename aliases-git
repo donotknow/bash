@@ -1,0 +1,7 @@
+alias gst='git status'
+alias gup='git pull --rebase'
+alias gstashup='git stash && git pull --rebase && git stash apply && git stash clear'
+alias gadd='git add'
+alias gaddall='git add .'
+alias gci='git commit'
+alias gcim='git commit -m'
