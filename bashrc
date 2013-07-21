@@ -8,10 +8,11 @@ export LANG=en_US.UTF-8
 export EDITOR='mate -w'
 export SVN_EDITOR=$EDITOR
 
-
 if [ -f ~/.bin/colors ]; then
    source ~/.bin/colors
 fi
+
+export PS1="${White}\W \u${Purple}\$${Color_Off} "
 
 if [ -f ~/.bin/aliases ]; then
    source ~/.bin/aliases
