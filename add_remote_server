@@ -1,0 +1,48 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Adds your ssh keys to a given remote server."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "      `basename $0` [user@]server"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "      -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "      `basename $0`"
+	echo ""
+	exit 0
+fi
+
+REMOTE_SERVER="$*"
+PUB_KEY="id_dsa.pub"
+
+echo "Creating ~/.ssh"
+ssh $REMOTE_SERVER "mkdir $HOME/.ssh"
+
+echo "Creating ~/.ssh/authorized_keys"
+ssh $REMOTE_SERVER "touch $HOME/.ssh/authorized_keys"
+
+if [[ ! scp "$HOME/.ssh/$PUB_KEY" "$REMOTE_SERVER:" ]]; then
+	echo "Error: failed to copy key to server"
+	return 1
+else
+	echo "Copied key to server"
+fi
+
+if [[ ! ssh $REMOTE_SERVER "cat $PUB_KEY >> .ssh/authorized_keys" ]]; then
+	echo "Error: failed to add key to authorized keys"
+	return 1
+else
+	echo "Added key to authorized_keys"
+fi
+
+if [[ ! ssh $REMOTE_SERVER "rm $PUB_KEY" ]]; then
+	echo "Error: failed to cleanup"
+	return 1
+else
+	echo "All done."
+fi
