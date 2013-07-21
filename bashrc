@@ -1,10 +1,17 @@
 export PATH=$HOME/.bin:/usr/local/git/bin/:$PATH
 export LSCOLORS=Cxfxcxdxbxegedabagacad
 export DISPLAY=:0.0
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export EDITOR='mate -w'
-export SVN_EDITOR='mate -w'
+export SVN_EDITOR=$EDITOR
 
+
+if [ -f ~/.bin/colors ]; then
+   source ~/.bin/colors
+fi
 
 if [ -f ~/.bin/aliases ]; then
    source ~/.bin/aliases
