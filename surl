@@ -1,0 +1,23 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" || "$#" -gt "1" ]]; then
+	echo "";
+	echo "`basename $0`: Displays the svn url of the working directory or optional given working"
+	echo "      copy [PATH]."
+	echo "";
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "     `basename $0` [PATH]";
+	echo "";
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "      -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "     `basename $0`"
+	echo "     `basename $0` ."
+	echo "     `basename $0` directory/ path/to/file"
+	echo "";
+	return 0
+fi
+
+svn info $1 | grep URL | sed 's/URL: //';
