@@ -9,7 +9,7 @@ alias lla='lal'
 alias lag='ls -ag'
 alias lga='lag'
 
-alias brc='edit ~/.bin/bashrc'
+alias brc='mate ~/.bin/bashrc'
 alias src='source ~/.bash_profile'
 
 alias sag='sudo apachectl graceful'
