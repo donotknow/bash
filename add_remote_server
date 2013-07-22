@@ -18,31 +18,40 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 fi
 
 REMOTE_SERVER="$*"
-PUB_KEY="id_dsa.pub"
 
-echo "Creating ~/.ssh"
-ssh $REMOTE_SERVER "mkdir $HOME/.ssh"
+if [[ -f "$HOME/.ssh/id_rsa.pub" ]]; then
+	PUB_KEY="id_rsa.pub"
+elif [[ -f "$HOME/.ssh/id_dsa.pub" ]]; then
+	PUB_KEY="id_dsa.pub"
+fi
 
-echo "Creating ~/.ssh/authorized_keys"
-ssh $REMOTE_SERVER "touch $HOME/.ssh/authorized_keys"
+if [[ ! -d '.ssh' ]]; then
+	echo "Creating ~/.ssh"
+	ssh $REMOTE_SERVER "mkdir .ssh"
+fi
 
-if [[ ! scp "$HOME/.ssh/$PUB_KEY" "$REMOTE_SERVER:" ]]; then
+if [[ ! -f '.ssh/authorized_keys' ]]; then
+	echo "Creating ~/.ssh/authorized_keys"
+	ssh $REMOTE_SERVER "touch .ssh/authorized_keys"
+fi
+
+if ! scp "$HOME/.ssh/$PUB_KEY" "$REMOTE_SERVER:" ; then
 	echo "Error: failed to copy key to server"
-	return 1
+	exit 1
 else
 	echo "Copied key to server"
 fi
 
-if [[ ! ssh $REMOTE_SERVER "cat $PUB_KEY >> .ssh/authorized_keys" ]]; then
+if ! ssh $REMOTE_SERVER "cat $PUB_KEY >> .ssh/authorized_keys" ; then
 	echo "Error: failed to add key to authorized keys"
-	return 1
+	exit 1
 else
 	echo "Added key to authorized_keys"
 fi
 
-if [[ ! ssh $REMOTE_SERVER "rm $PUB_KEY" ]]; then
+if ! ssh $REMOTE_SERVER "rm $PUB_KEY" ; then
 	echo "Error: failed to cleanup"
-	return 1
+	exit 1
 else
 	echo "All done."
 fi
