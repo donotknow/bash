@@ -20,4 +20,4 @@ if [[ "$1" = "-h" || "$1" = "--help" || "$#" -gt "1" ]]; then
 	return 0
 fi
 
-svn info $1 | grep URL | sed 's/URL: //';
+svn info $1 | grep URL | sed 's/URL: //'
