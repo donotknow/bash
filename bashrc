@@ -26,6 +26,6 @@ if [ -f ~/.bin/aliases-svn ]; then
    source ~/.bin/aliases-svn
 fi
 
-if [ -f ~/.bin/aliases-directories ]; then
-   source ~/.bin/aliases-directories
+if [ -f ~/.bin/personal ]; then
+   source ~/.bin/personal
 fi
