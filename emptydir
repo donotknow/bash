@@ -1,0 +1,52 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+# help
+if [[ $@ = "--help" || $@ = "-h" || $# -gt 1 ]]; then
+	echo ""
+	echo "`basename $0`: Displays all empty directories within current working path or"
+	echo "          provided path."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "     `basename $0` [PATH]"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "     `basename $0`"
+	echo "     `basename $0` ."
+	echo "     `basename $0` global/"
+	echo ""
+	exit 0
+fi
+
+# set up optional path variable, defaults to current path
+if [[ $# -eq 1 ]]; then
+	ED_PWD=$1
+else
+	ED_PWD=.
+fi
+
+# set the for loop separator character to new lines only (not spaces)
+ED_IFS=$IFS
+IFS=$'\n'
+
+# find all the directories (-type d) within the provided path
+for ED_DIR in `find $ED_PWD -type d`; do
+	# if the directory isn't a hidden directory (.svn .git etc)
+	if [[ `echo $ED_DIR | grep '\.[^\.\/].*'` != '' ]]; then
+		continue
+	fi
+
+	# if the directory listing is empty, it's an empty directory (minus any .svn .git etc)
+	if [[ `ls $ED_DIR` == '' ]]; then
+		# print this a little prettier (no // and no leading ./)
+		echo `echo $ED_DIR | sed 's~//~/~g' | sed 's~^\./~~'`
+	fi
+done
+
+# clean up
+IFS=$ED_IFS
+unset ED_IFS
+unset ED_PWD
+unset ED_DIR
+
+exit 1
