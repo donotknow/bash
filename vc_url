@@ -6,13 +6,13 @@ if [[ "$1" = "-h" || "$1" = "--help" || "$#" -gt "1" ]]; then
 	echo "`basename $0`: Displays the repository url of the working directory."
 	echo "";
 	echo -e "${BIYellow}Usage:${Color_Off}"
-	echo "     `basename $0`";
+	echo "    `basename $0`";
 	echo "";
 	echo -e "${BICyan}Valid options:${Color_Off}"
-	echo "      -h [--help]    show this help message"
+	echo "    -h [--help]    show this help message"
 	echo ""
 	echo -e "${BIWhite}Examples:${Color_Off}"
-	echo "     `basename $0`"
+	echo "    `basename $0`"
 	echo "";
 	return 0
 fi

@@ -6,13 +6,13 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "`basename $0`: Mounts an AFP volume."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
-	echo "      `basename $0` username:password@server sharepoint"
+	echo "    `basename $0` username:password@server sharepoint"
 	echo ""
 	echo -e "${BICyan}Valid options:${Color_Off}"
-	echo "      -h [--help]    show this help message"
+	echo "    -h [--help]    show this help message"
 	echo ""
 	echo -e "${BIWhite}Examples:${Color_Off}"
-	echo "      `basename $0` user:pass@server.local folder"
+	echo "    `basename $0` user:pass@server.local folder"
 	echo ""
 	exit 0
 fi

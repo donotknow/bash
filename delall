@@ -4,26 +4,38 @@ source `dirname $0`"/bashrc"
 if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "";
 	echo "`basename $0`: Marks all files that are removed from the filesystem for deletion in"
-	echo "        subversion."
+	echo "    \`vc_type\`."
+	echo "    Also see \`git rm --help\` and \`svn rm --help\`."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
-	echo "      `basename $0`"
+	echo "    `basename $0`"
 	echo ""
 	echo -e "${BICyan}Valid options:${Color_Off}"
-	echo "      -h [--help]    show this help message"
+	echo "    -h [--help]    show this help message"
 	echo ""
 	echo -e "${BIWhite}Examples:${Color_Off}"
-	echo "      `basename $0`"
+	echo "    `basename $0`"
 	echo ""
 	exit 0
 fi
 
-files=`svn st | grep ! | sed 's/\! / /' | xargs svn delete`
+vcType=`vc_type`
 
-# print some output that looks like svn’s
-for i in $files; do
-	length=`echo ${#i}`
-	if [[ $length > 1 ]]; then
-		echo D\ \ \ \ \ \ $i
-	fi
-done
+if [[ $vcType == 'git' ]]; then
+	git add --all
+elif [[ $vcType == 'svn' ]]; then
+
+	files=`svn st | grep ! | sed 's/\! / /' | xargs svn delete`
+
+	# print some output that looks like svn’s
+	for i in $files; do
+		length=`echo ${#i}`
+		if [[ $length > 1 ]]; then
+			echo D\ \ \ \ \ \ $i
+		fi
+	done
+
+fi
+
+unset vcType files
+exit $?

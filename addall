@@ -7,13 +7,13 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "    Also see \`git add --help\` and \`svn add --help\`."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
-	echo "      `basename $0`"
+	echo "    `basename $0`"
 	echo ""
 	echo -e "${BICyan}Valid options:${Color_Off}"
-	echo "      -h [--help]    show this help message"
+	echo "    -h [--help]    show this help message"
 	echo ""
 	echo -e "${BIWhite}Examples:${Color_Off}"
-	echo "      `basename $0`"
+	echo "    `basename $0`"
 	echo ""
 	exit 0
 fi
