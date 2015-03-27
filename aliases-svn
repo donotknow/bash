@@ -4,7 +4,3 @@ alias revert='svn revert'
 alias resolve='svn resolved'
 alias resolved='svn resolved'
 alias blame='svn blame'
-
-dif () {
-	svn diff $@ | mate
-}

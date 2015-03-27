@@ -1,0 +1,30 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Show changes between commits, commit and working tree, etc for \`vc_type\`."
+	echo "    Also see \`git diff --help\` and \`svn diff --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	exit 0
+fi
+
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	git diff "$@" | mate
+elif [[ $vcType == 'svn' ]]; then
+	svn diff "$@" | mate
+fi
+
+unset vcType
+exit $?
