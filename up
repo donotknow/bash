@@ -1,0 +1,34 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Fetch from and integrate remote repository for \`vc_type\`."
+	echo "    Also see \`git fetch --help\`, \`git pull --help\` and \`svn up --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	exit 0
+fi
+
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	for remote in `git branch -a | grep -v "\->" | grep -v "master" | grep -v "HEAD"`; do
+		git branch --track $remote
+	done
+	git remote update
+	git pull --all
+elif [[ $vcType == 'svn' ]]; then
+	svn update "$@"
+fi
+
+unset vcType remote
+exit $?

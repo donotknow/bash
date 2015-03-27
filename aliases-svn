@@ -1,5 +1,3 @@
-alias up='svn update'
-alias upp='svn update *'
 alias delextra='svn status | grep "?" | xargs rm -rf'
 alias rename='svn rename'
 alias revert='svn revert'
