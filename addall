@@ -3,7 +3,8 @@ source `dirname $0`"/bashrc"
 
 if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "";
-	echo "`basename $0`: Marks all new files on the filesystem for addition in subversion."
+	echo "`basename $0`: Marks all new files on the filesystem for addition in \`vc_type\`."
+	echo "    Also see \`git add --help\` and \`svn add --help\`."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
 	echo "      `basename $0`"
@@ -17,4 +18,23 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	exit 0
 fi
 
-svn add * --force
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	git add --verbose --all
+elif [[ $vcType == 'svn' ]]; then
+
+	files=`svn st | grep \? | sed 's/\? / /' | xargs svn add`
+
+	# print some output that looks like svn’s
+	for i in $files; do
+		length=`echo ${#i}`
+		if [[ $length > 1 ]]; then
+			echo A\ \ \ \ \ \ $i
+		fi
+	done
+
+fi
+
+unset vcType files
+exit $?

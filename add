@@ -3,8 +3,8 @@ source `dirname $0`"/bashrc"
 
 if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "";
-	echo "`basename $0`: Helper to determine which version control system (between git and svn)"
-	echo "    the current working directory is."
+	echo "`basename $0`: Mark files for addition for \`vc_type\`."
+	echo "    Also see \`git add --help\` and \`svn add --help\`."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
 	echo "    `basename $0`"
@@ -13,26 +13,18 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "    -h [--help]    show this help message"
 	echo ""
 	echo -e "${BIWhite}Examples:${Color_Off}"
-	echo "    `basename $0`"
+	echo "    `basename $0` README.md"
 	echo ""
 	exit 0
 fi
 
-vcType=''
+vcType=`vc_type`
 
-if [[ `git config --get remote.origin.url` ]]; then
-	vcType='git'
-else
-	svn info > /dev/null 2>&1
-
-	if [[ $? == 0 ]]; then
-		vcType='svn'
-	fi
-fi
-
-if [[ $vcType ]]; then
-	echo $vcType
+if [[ $vcType == 'git' ]]; then
+	git add --verbose $@
+elif [[ $vcType == 'svn' ]]; then
+	svn add $@
 fi
 
 unset vcType
-exit 0
+exit $?

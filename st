@@ -3,8 +3,8 @@ source `dirname $0`"/bashrc"
 
 if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "";
-	echo "`basename $0`: Helper to determine which version control system (between git and svn)"
-	echo "    the current working directory is."
+	echo "`basename $0`: Show the status of working tree for \`vc_type\`."
+	echo "    Also see \`git status --help\` and \`svn status --help\`."
 	echo ""
 	echo -e "${BIYellow}Usage:${Color_Off}"
 	echo "    `basename $0`"
@@ -18,21 +18,13 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	exit 0
 fi
 
-vcType=''
+vcType=`vc_type`
 
-if [[ `git config --get remote.origin.url` ]]; then
-	vcType='git'
-else
-	svn info > /dev/null 2>&1
-
-	if [[ $? == 0 ]]; then
-		vcType='svn'
-	fi
-fi
-
-if [[ $vcType ]]; then
-	echo $vcType
+if [[ $vcType == 'git' ]]; then
+	git status $@
+elif [[ $vcType == 'svn' ]]; then
+	svn st $@ --ignore-externals | grep -v "^[[:space:]]*X"
 fi
 
 unset vcType
-exit 0
+exit $?
