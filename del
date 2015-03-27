@@ -1,0 +1,30 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Mark files for removal from \`vc_type\`."
+	echo "    Also see \`git rm --help\` and \`svn rm --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0` README.md"
+	echo ""
+	exit 0
+fi
+
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	git rm "$@"
+elif [[ $vcType == 'svn' ]]; then
+	svn rm "$@"
+fi
+
+unset vcType
+exit $?
