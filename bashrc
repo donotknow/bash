@@ -29,4 +29,3 @@ if [ -f ~/.bin/personal ]; then
 fi
 
 export PS1="\[${White}\]\W\[${Yellow}\]\$(__git_ps1 '(%s)') \[${White}\]\u\[${Purple}\]\$\[${Color_Off}\] "
-# export PS1="\[${White}\]\W \u\[${Yellow}\]\$(__git_ps1)\[${Purple}\]\$\[${Color_Off}\] "
