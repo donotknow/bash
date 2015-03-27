@@ -4,10 +4,5 @@ alias push='git push'
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM='auto'
 
-if [ -f ~/.bin/lib/git-completion.bash ]; then
-	source ~/.bin/lib/git-completion.bash
-fi
-
-if [ -f ~/.bin/lib/git-prompt.sh ]; then
-	source ~/.bin/lib/git-prompt.sh
-fi
+[[ -r $HOME/.bin/lib/git-completion.bash ]] && source $HOME/.bin/lib/git-completion.bash
+[[ -r $HOME/.bin/lib/git-prompt.sh ]] && source $HOME/.bin/lib/git-prompt.sh
