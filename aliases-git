@@ -1,2 +1,10 @@
 alias gstashup='git stash && git pull --rebase && git stash apply && git stash clear'
 alias push='git push'
+
+if [ -f ~/.bin/lib/git-completion.bash ]; then
+	source ~/.bin/lib/git-completion.bash
+fi
+
+if [ -f ~/.bin/lib/git-prompt.sh ]; then
+	source ~/.bin/lib/git-prompt.sh
+fi
