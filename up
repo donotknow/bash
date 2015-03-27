@@ -21,10 +21,7 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	for remote in `git branch -a | grep -v "\->" | grep -v "master" | grep -v "HEAD"`; do
-		git branch --track $remote
-	done
-	git remote update
+	git fetch --all
 	git pull --all
 elif [[ $vcType == 'svn' ]]; then
 	svn update "$@"
