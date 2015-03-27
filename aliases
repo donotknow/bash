@@ -23,3 +23,5 @@ alias diffiles='diff -qrN'
 alias findname='find . -name'
 
 alias flushdns='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+
+alias cim='ci -m'

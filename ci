@@ -21,9 +21,9 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git commit $@
+	git commit "$@"
 elif [[ $vcType == 'svn' ]]; then
-	svn commit $@
+	svn commit "$@"
 fi
 
 unset vcType

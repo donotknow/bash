@@ -21,9 +21,9 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git status $@
+	git status "$@"
 elif [[ $vcType == 'svn' ]]; then
-	svn st $@ --ignore-externals | grep -v "^[[:space:]]*X"
+	svn st "$@" --ignore-externals | grep -v "^[[:space:]]*X"
 fi
 
 unset vcType

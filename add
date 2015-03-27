@@ -21,9 +21,9 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git add --verbose $@
+	git add --verbose "$@"
 elif [[ $vcType == 'svn' ]]; then
-	svn add $@
+	svn add "$@"
 fi
 
 unset vcType
