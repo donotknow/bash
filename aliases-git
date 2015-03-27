@@ -1,4 +1,4 @@
-alias gstashup='git stash && git pull --rebase && git stash apply && git stash clear'
+alias stash='git stash'
 alias push='git push'
 
 GIT_PS1_SHOWDIRTYSTATE=true
