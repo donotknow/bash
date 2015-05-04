@@ -12,6 +12,7 @@ export SVN_EDITOR=$EDITOR
 [[ -r $HOME/.bin/aliases ]] && source $HOME/.bin/aliases
 [[ -r $HOME/.bin/aliases-git ]] && source $HOME/.bin/aliases-git
 [[ -r $HOME/.bin/aliases-svn ]] && source $HOME/.bin/aliases-svn
+[[ -r $HOME/.bin/work ]] && source $HOME/.bin/work
 [[ -r $HOME/.bin/personal ]] && source $HOME/.bin/personal
 
 export PS1="\[${White}\]\W\[${Yellow}\]\$(__git_ps1 '(%s)') \[${White}\]\u\[${Purple}\]\$\[${Color_Off}\] "
