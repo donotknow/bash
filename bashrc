@@ -1,4 +1,4 @@
-export PATH=$HOME/.bin:/usr/local/git/bin/:$PATH
+export PATH=$HOME/.bin:$HOME/.bin/lib:/usr/local/git/bin/:$PATH
 export LSCOLORS=Cxfxcxdxbxegedabagacad
 export DISPLAY=:0.0
 export LC_CTYPE=en_US.UTF-8
