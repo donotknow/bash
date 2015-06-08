@@ -33,4 +33,4 @@ spellChecking    = true
 spellingLanguage = "en"
 
 [ "{README,INSTALL,LICENSE,TODO}" ]
-fileType         = "text.plain"
+fileType = "text.plain"
