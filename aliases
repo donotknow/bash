@@ -13,7 +13,6 @@ alias brc='mate $HOME/.bin/bashrc'
 alias src='source $HOME/.bash_profile'
 
 alias sag='sudo apachectl graceful'
-alias localhost='cd /Library/WebServer/Documents'
 
 alias size='du -s -h'
 alias kext='kextstat >> ~/Desktop/kextstat'
@@ -29,3 +28,7 @@ alias cim='ci -m'
 alias surl='vc_url'
 alias delete='del'
 alias cpmateicon='cp ~/.bin/tm/icns /Applications/TextMate.app/Contents/Resources/TextMate.icns'
+
+alias localhost='cd /Library/WebServer/Documents'
+alias sites='cd $HOME/Sites'
+alias renpm='rm -rf node_modules && npm i'
