@@ -21,11 +21,11 @@ excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
 binary = true
 
 [ *.json ]
-softTabs         = true
-tabSize          = 2
+softTabs = true
+tabSize  = 2
 
 [ *.txt ]
-softWrap         = true
+softWrap = true
 
 [ .git/COMMIT_EDITMSG ]
 softWrap         = true
