@@ -1,0 +1,27 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Clone a git repository or checkout a subversion repo."
+	echo "    Also see \`git clone --help\` and \`svn checkout --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0` git@github.com:donotknow/bash.git"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0` git@github.com:donotknow/bash.git"
+	echo ""
+	exit 0
+fi
+
+if [[ $@ == *'git'* ]]; then
+	git clone "$@"
+else
+	svn checkout "$@"
+fi
+
+exit $?
