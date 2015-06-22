@@ -24,6 +24,7 @@ alias findname='find . -name'
 
 alias flushdns='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
+alias clone='. clone'
 alias cim='ci -m'
 alias surl='vc_url'
 alias delete='del'

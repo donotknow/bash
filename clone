@@ -1,5 +1,5 @@
 #!/bin/bash
-source `dirname $0`"/bashrc"
+# source `dirname $0`"/bashrc"
 
 if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	echo "";
@@ -20,8 +20,9 @@ fi
 
 if [[ $@ == *'git'* ]]; then
 	git clone "$@"
+	cd `echo $@ | sed "s~.*\([^\s]+\.git\).*~\1~" | sed "s~^.*\/\([^\/]*\)\.git$~\1~"`
 else
 	svn checkout "$@"
 fi
 
-exit $?
+# exit $?
