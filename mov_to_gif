@@ -1,0 +1,28 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" || "$#" -lt 1 || "$#" -gt 2 || `which ffmpeg` = '' || `which gifsicle` = '' ]]; then
+	echo "";
+	echo "`basename $0`: Converts a QuickTime file (.mov) to an animated GIF. Requires ffmpeg"
+	echo "     and gifsicle for the conversion."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0` PATH_TO_MOV"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0` ~/Movies/movie.mov"
+	echo ""
+	exit 0
+fi
+
+movToGifMov="$1"
+movToGifGif=`echo $movToGifMov | sed 's/\.m[^\.][^\.]*$/.gif/'`
+
+movToGifDimensions=`ffmpeg -i $1 2>&1 | grep "[0-9][0-9]*x[0-9][0-9]*" | sed 's/^.* \([0-9][0-9]*x[0-9][0-9]*\) .*$/\1/'`
+ffmpeg -i $movToGifMov -s $movToGifDimensions -pix_fmt rgb24 -f gif - | gifsicle --optimize=3 --delay=3 > $movToGifGif
+
+unset movToGifMov movToGifGif movToGifDimensions
+exit $?
