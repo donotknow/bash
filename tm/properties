@@ -12,20 +12,20 @@ myExtraIncludes  = ".tm_properties,.htaccess,.gitignore"
 fileBrowserGlob  = "{*,$myExtraIncludes}"
 include          = "{$include,$myExtraIncludes}"
 
-myExtraExcludes       = "log,node_modules,vendor,tmp"
+myExtraExcludes       = "log,coverage,node_modules,vendor,tmp"
 excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
 
 [ *.{gif,icns,ico,jpg,jpeg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,xib} ]
-binary           = true
+binary = true
 
 [ *.json ]
-softTabs         = true
-tabSize          = 2
+softTabs = true
+tabSize  = 2
 
 [ *.txt ]
-softWrap         = true
+softWrap = true
 
 [ .git/COMMIT_EDITMSG ]
 softWrap         = true
@@ -33,4 +33,4 @@ spellChecking    = true
 spellingLanguage = "en"
 
 [ "{README,INSTALL,LICENSE,TODO}" ]
-fileType         = "text.plain"
+fileType = "text.plain"

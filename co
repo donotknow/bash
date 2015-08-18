@@ -1,0 +1,34 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Checkout a branch, paths, or a repository, based on \`vc_type\`."
+	echo "    Also see \`git checkout --help\` and \`svn checkout --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0` [BRANCH_NAME]"
+	echo "    `basename $0` [FILE_NAME]"
+	echo "    `basename $0` [SVN_REPO]"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0` branch_name"
+	echo "    `basename $0` file_name.txt"
+	echo "    `basename $0` svn+ssh://domain.com/repo"
+	echo ""
+	exit 0
+fi
+
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	git checkout "$@"
+elif [[ $@ == *'://'* ]]; then
+	svn checkout "$@"
+fi
+
+unset vcType
+exit $?
