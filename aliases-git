@@ -1,5 +1,6 @@
 alias stash='git stash'
 alias push='git push'
+alias editst='st -s | sed "s/^[\?A-Z ][\?A-Z ][\?A-Z ]//" | xargs mate'
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM='auto'
