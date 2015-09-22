@@ -18,6 +18,16 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	exit 0
 fi
 
-./node_modules/.bin/gulp "$@"
+if [ -e "./node_modules/.bin/gulp" ]; then
+	./node_modules/.bin/gulp "$@"
+else
+	base_dir=`npm ls --depth=-1 | grep -v "─" | grep -v "^$" | sed "s/^.* //"`
+	if [ -e "$base_dir/node_modules/.bin/gulp" ]; then
+		$base_dir/node_modules/.bin/gulp "$@"
+	else
+		echo -e "${BIRed}Error:${Color_Off} can’t find local instance of gulp."
+		exit 1
+	fi
+fi
 
 exit $?
