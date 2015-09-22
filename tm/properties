@@ -27,6 +27,10 @@ tabSize  = 2
 [ *.txt ]
 softWrap = true
 
+[ *.rb ]
+softTabs = true
+tabSize = 4
+
 [ .git/COMMIT_EDITMSG ]
 softWrap         = true
 spellChecking    = true
