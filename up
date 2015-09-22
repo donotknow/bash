@@ -21,7 +21,7 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git fetch --all
+	git fetch -p --all
 	git pull --all
 elif [[ $vcType == 'svn' ]]; then
 	svn update "$@"
