@@ -18,16 +18,22 @@ if [[ "$1" = "-h" || "$1" = "--help" ]]; then
 	exit 0
 fi
 
-if [ -e "./node_modules/.bin/gulp" ]; then
-	./node_modules/.bin/gulp "$@"
+gulpFile="./gulpfile.js"
+if [ ! -f "$gulpFile" ]; then
+	gulpFile=`find . -name gulpfile.js | grep -v "node_modules" | head -n 1`
+fi
+
+if [ -f "./node_modules/.bin/gulp" ]; then
+	./node_modules/.bin/gulp --gulpfile "$gulpFile" "$@"
 else
-	base_dir=`npm ls --depth=-1 | grep -v "─" | grep -v "^$" | sed "s/^.* //"`
-	if [ -e "$base_dir/node_modules/.bin/gulp" ]; then
-		$base_dir/node_modules/.bin/gulp "$@"
+	gulpModulesDir=`npm ls --depth=-1 | grep -v "─" | grep -v "^$" | sed "s/^.* //"`
+	if [ -e "$gulpModulesDir/node_modules/.bin/gulp" ]; then
+		$gulpModulesDir/node_modules/.bin/gulp --gulpfile "$gulpFile" "$@"
 	else
 		echo -e "${BIRed}Error:${Color_Off} can’t find local instance of gulp."
 		exit 1
 	fi
 fi
 
+unset gulpFile gulpModulesDir
 exit $?
