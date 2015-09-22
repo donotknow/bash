@@ -12,7 +12,7 @@ myExtraIncludes  = ".tm_properties,.htaccess,.gitignore"
 fileBrowserGlob  = "{*,$myExtraIncludes}"
 include          = "{$include,$myExtraIncludes}"
 
-myExtraExcludes       = "log,coverage,node_modules,vendor,tmp"
+myExtraExcludes       = "log,coverage,output,node_modules,vendor,tmp"
 excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
