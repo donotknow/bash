@@ -1,0 +1,30 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Create and checkout a new git branch from “origin/master”. Or \`svn cp\`."
+	echo "    Also see \`git checkout --help\` and \`svn cp --help\`."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename some_new_branch`"
+	echo ""
+	exit 0
+fi
+
+vcType=`vc_type`
+
+if [[ $vcType == 'git' ]]; then
+	git checkout -b "$@" origin/master
+elif [[ $vcType == 'svn' ]]; then
+	svn cp "$@"
+fi
+
+unset vcType
+exit $?
