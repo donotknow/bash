@@ -21,7 +21,7 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git checkout -b "$@" origin/master
+	git fetch origin && git checkout -b "$@" origin/master
 elif [[ $vcType == 'svn' ]]; then
 	svn cp "$@"
 fi
