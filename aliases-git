@@ -4,7 +4,7 @@ alias stash='git stash'
 alias push='git push'
 alias editst='st -s | sed "s/^[\?A-Z ][\?A-Z ][\?A-Z ]//" | xargs mate'
 alias touchst='st -s | sed "s/^[\?A-Z ][\?A-Z ][\?A-Z ]//" | xargs touch'
-alias deldone='git branch --merged | grep -v "^*" | xargs git branch -d'
+alias deldone='up && git branch --merged | grep -v "^*" | xargs git branch -d'
 alias undolastrev='git reset --soft HEAD~1'
 
 GIT_PS1_SHOWDIRTYSTATE=true
