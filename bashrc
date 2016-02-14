@@ -10,7 +10,11 @@ export SVN_EDITOR=$EDITOR
 
 [[ -r $HOME/.bin/colors ]] && source $HOME/.bin/colors
 
-export PROMPT_COLOR=$Purple
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+	export PROMPT_COLOR=$Purple
+else
+	export PROMPT_COLOR=$Green
+fi
 
 [[ -r $HOME/.bin/aliases ]] && source $HOME/.bin/aliases
 [[ -r $HOME/.bin/aliases-git ]] && source $HOME/.bin/aliases-git
