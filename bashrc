@@ -1,5 +1,8 @@
 export PATH=$HOME/.bin:$HOME/.bin/lib:/usr/local/git/bin:/usr/local/sbin:$PATH
-export LSCOLORS=Cxfxcxdxbxegedabagacad
+
+export LSCOLORS="Cxfxcxdxbxegedabagacad"
+export LS_COLORS="di=1;32;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
+
 export DISPLAY=:0.0
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
