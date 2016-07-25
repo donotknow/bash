@@ -1,0 +1,36 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Run local instance of eslint inside node_modules folder instead of globally"
+	echo "    installed version."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	exit 0
+fi
+
+if [ -f "./node_modules/.bin/eslint" ]; then
+	./node_modules/.bin/eslint "$@"
+	status=$?
+else
+	eslintModulesDir=`npm ls --depth=-1 | grep -v "─" | grep -v "^$" | sed "s/^.* //"`
+	if [ -e "$eslintModulesDir/node_modules/.bin/eslint" ]; then
+		$eslintModulesDir/node_modules/.bin/eslint "$@"
+		status=$?
+	else
+		echo -e "${BIRed}Error:${Color_Off} can’t find local instance of eslint."
+		exit 1
+	fi
+fi
+
+unset eslintModulesDir
+exit $status
