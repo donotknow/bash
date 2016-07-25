@@ -21,8 +21,8 @@ fi
 vcType=`vc_type`
 
 if [[ $vcType == 'git' ]]; then
-	git fetch -p --all
-	git pull --all
+	git fetch --prune "$@"
+	git pull "$@"
 elif [[ $vcType == 'svn' ]]; then
 	svn update "$@"
 fi
