@@ -1,0 +1,36 @@
+#!/bin/bash
+source `dirname $0`"/bashrc"
+
+if [[ "$1" = "-h" || "$1" = "--help" ]]; then
+	echo "";
+	echo "`basename $0`: Run local instance of jsdoc inside node_modules folder instead of globally"
+	echo "    installed version."
+	echo ""
+	echo -e "${BIYellow}Usage:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	echo -e "${BICyan}Valid options:${Color_Off}"
+	echo "    -h [--help]    show this help message"
+	echo ""
+	echo -e "${BIWhite}Examples:${Color_Off}"
+	echo "    `basename $0`"
+	echo ""
+	exit 0
+fi
+
+if [ -f "./node_modules/.bin/jsdoc" ]; then
+	./node_modules/.bin/jsdoc "$@"
+	status=$?
+else
+	jsdocModulesDir=`npm ls --depth=-1 | grep -v "─" | grep -v "^$" | sed "s/^.* //"`
+	if [ -e "$jsdocModulesDir/node_modules/.bin/jsdoc" ]; then
+		$jsdocModulesDir/node_modules/.bin/jsdoc "$@"
+		status=$?
+	else
+		echo -e "${BIRed}Error:${Color_Off} can’t find local instance of jsdoc."
+		exit 1
+	fi
+fi
+
+unset jsdocModulesDir
+exit $status
