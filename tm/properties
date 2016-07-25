@@ -17,7 +17,7 @@ excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
 
-[ *.{gif,icns,ico,jpg,jpeg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,xib} ]
+[ *.{eot,gif,icns,ico,jpeg,jpg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,ttf,woff,woff2,xib} ]
 binary = true
 
 [ *.json ]
