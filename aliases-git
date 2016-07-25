@@ -6,6 +6,7 @@ alias editst='st -s | cut -c4- | xargs mate'
 alias touchst='st -s | cut -c4- | xargs touch'
 alias deldone='up && git branch --merged | grep -v "^*" | xargs git branch -d'
 alias undolastrev='git reset --soft HEAD~1'
+alias msq='up && git merge origin/master && git reset origin/master'
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM='auto'
