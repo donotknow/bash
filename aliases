@@ -1,11 +1,17 @@
-alias ls='ls -G'
-alias la='ls -Ga'
-alias lg='ls -Gg'
-alias ll='ls -Gl'
-alias lla='ls -Gla'
-alias lal='ls -Gla'
-alias lga='ls -Gga'
-alias lgl='ls -Gga'
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+	LBO_LS_COLOR='-G'
+else
+	LBO_LS_COLOR='--color'
+fi
+
+alias ls='ls $LBO_LS_COLOR'
+alias la='ls -a $LBO_LS_COLOR'
+alias lg='ls -g $LBO_LS_COLOR'
+alias ll='ls -l $LBO_LS_COLOR'
+alias lla='ls -la $LBO_LS_COLOR'
+alias lal='ls -la $LBO_LS_COLOR'
+alias lga='ls -ga $LBO_LS_COLOR'
+alias lgl='ls -ga $LBO_LS_COLOR'
 
 alias rm='rm -i'
 
