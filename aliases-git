@@ -5,7 +5,7 @@ alias push='git push'
 alias unstage='st -s | cut -c4- | xargs git reset HEAD'
 alias editst='st -s | cut -c4- | xargs mate'
 alias touchst='st -s | cut -c4- | xargs touch'
-alias deldone='up && git branch --merged | grep -v "^*" | xargs git branch -d'
+alias deldone='up && if [[ `git rev-parse --abbrev-ref HEAD` == "master" ]]; then git branch --merged | grep -v "^*" | xargs git branch -d; fi'
 alias undolastrev='git reset --soft HEAD~1'
 alias msq='up && git merge origin/master && git reset origin/master'
 
