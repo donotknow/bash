@@ -19,10 +19,17 @@ if [[ "$1" = "-h" || "$1" = "--help" || "$#" -lt 1 || "$#" -gt 2 || `which ffmpe
 fi
 
 movToGifMov="$1"
-movToGifGif=`echo $movToGifMov | sed 's/\.m[^\.][^\.]*$/.gif/'`
-
 movToGifDimensions=`ffmpeg -i $1 2>&1 | grep "[0-9][0-9]*x[0-9][0-9]*" | sed 's/^.* \([0-9][0-9]*x[0-9][0-9]*\)[ ,].*$/\1/'`
-ffmpeg -i $movToGifMov -s $movToGifDimensions -pix_fmt rgb24 -f gif - | gifsicle --optimize=3 --delay=3 > $movToGifGif
 
-unset movToGifMov movToGifGif movToGifDimensions
+# create a palette file for not super dithered colors
+movToGifPalette=`echo $movToGifMov | sed 's/\.m[^\.][^\.]*$/.png/'`
+ffmpeg -i $movToGifMov -vf palettegen $movToGifPalette
+
+# convert the mov to a gif using the palette file
+movToGifGif=`echo $movToGifMov | sed 's/\.m[^\.][^\.]*$/.gif/'`
+ffmpeg -i $movToGifMov -s $movToGifDimensions -i $movToGifPalette -lavfi "fps=15[v];[v][1:v]paletteuse" -f gif - | gifsicle --optimize=3 > $movToGifGif
+
+# clean up
+rm -rf $movToGifPalette
+unset movToGifMov movToGifDimensions movToGifPalette movToGifGif
 exit $?
