@@ -13,6 +13,8 @@ alias touchst='tickle'
 alias deldone='up && if [[ `git rev-parse --abbrev-ref HEAD` == "master" ]]; then git branch --merged | grep -v "^*" | xargs git branch -d; fi'
 alias undolastrev='git reset --soft HEAD~1'
 alias msq='up && git merge origin/master && git reset origin/master'
+alias ggc='rm -rf .git/gc.log && git prune && git gc --prune && git fsck'
+
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM='auto'
