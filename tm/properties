@@ -17,6 +17,8 @@ excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
 
+TM_GIT = "/usr/local/bin/git"
+
 [ *.{eot,gif,icns,ico,jpeg,jpg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,ttf,woff,woff2,xib} ]
 binary = true
 
