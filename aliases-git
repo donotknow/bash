@@ -2,7 +2,7 @@ alias gh='github'
 alias difc='dif --cached'
 alias stash='git stash'
 alias push='git push'
-alias unstage='st -s | cut -c4- | xargs git reset HEAD'
+alias unstage='st -s | cut -c4- | sed "s/ -> /☃/" | tr "☃" "\n" | xargs git reset HEAD'
 alias editst='st -s | cut -c4- | xargs mate'
 alias dif_master='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff $MERGE_BASE..$BRANCH && unset BRANCH MERGE_BASE'
 alias diff_master='dif_master'
@@ -12,9 +12,14 @@ alias tickle='FILES="`_diff_master_name_only` `_diff_dirty_name_only`" && echo $
 alias touchst='tickle'
 alias deldone='up && if [[ `git rev-parse --abbrev-ref HEAD` == "master" ]]; then git branch --merged | grep -v "^*" | xargs git branch -d; fi'
 alias undolastrev='git reset --soft HEAD~1'
+alias rebase='up && git stash && git rebase origin/master && git stash pop'
 alias msq='up && git merge origin/master && git reset origin/master'
 alias ggc='rm -rf .git/gc.log && git prune && git gc --prune && git fsck'
 
+reset () {
+	git reset HEAD "$@"
+	git checkout "$@"
+}
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM='auto'

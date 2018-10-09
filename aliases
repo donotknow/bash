@@ -38,4 +38,9 @@ alias cpmateicon='cp ~/.bin/tm/icns /Applications/TextMate.app/Contents/Resource
 
 alias localhost='cd /Library/WebServer/Documents'
 alias sites='cd $HOME/Sites'
+
+alias github='stree'
+alias github_really='/usr/local/bin/github'
+
 alias renpm='rm -rf node_modules && npm i'
+alias renpm_EINTEGRITY='npm cache clean -f && rm -rf node_modules && npm i'
