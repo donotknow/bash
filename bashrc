@@ -22,6 +22,7 @@ fi
 [[ -r $HOME/.bin/aliases ]] && source $HOME/.bin/aliases
 [[ -r $HOME/.bin/aliases-git ]] && source $HOME/.bin/aliases-git
 [[ -r $HOME/.bin/aliases-svn ]] && source $HOME/.bin/aliases-svn
+[[ -r $HOME/.bin/work-secrets ]] && source $HOME/.bin/work-secrets
 [[ -r $HOME/.bin/work ]] && source $HOME/.bin/work
 [[ -r $HOME/.bin/personal ]] && source $HOME/.bin/personal
 
