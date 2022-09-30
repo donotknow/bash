@@ -4,7 +4,9 @@ alias stash='git stash'
 alias push='git push'
 alias unstage='st -s | cut -c4- | sed "s/ -> /☃/" | tr "☃" "\n" | xargs git reset HEAD'
 alias editst='st -s | cut -c4- | xargs mate'
-alias dif_master='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff $MERGE_BASE..$BRANCH && unset BRANCH MERGE_BASE'
+alias base_sha='BRANCH=`git rev-parse --abbrev-ref HEAD` && git merge-base origin/master $BRANCH && unset BRANCH'
+alias basesha='base_sha'
+alias dif_master='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff $MERGE_BASE..$BRANCH'
 alias diff_master='dif_master'
 alias _diff_master_name_only='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff --name-only $MERGE_BASE..$BRANCH --diff-filter=ACMRTUXB && unset BRANCH MERGE_BASE'
 alias _diff_dirty_name_only='git status --porcelain | grep -v "^[[:space:]]*D" | cut -c4- | sed "s/^.* -> //g"'
@@ -21,8 +23,17 @@ reset () {
 	git checkout "$@"
 }
 
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUPSTREAM='auto'
+updatelastrev () {
+	message=$(git log -1 --format="medium" | tail -n +5 | cut -c5-)
+	git reset --soft HEAD~1 #undolastrev
+	git commit -m "$message"
+	unset message
+}
 
 [[ -r $HOME/.bin/lib/git-completion.bash ]] && source $HOME/.bin/lib/git-completion.bash
 [[ -r $HOME/.bin/lib/git-prompt.sh ]] && source $HOME/.bin/lib/git-prompt.sh
+
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUPSTREAM='auto'
+
+export PS1='\u $(__git_ps1 "(%s)")\$ '
