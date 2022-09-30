@@ -35,6 +35,7 @@ alias cim='ci -m'
 alias surl='vc_url'
 alias delete='del'
 alias cpmateicon='cp ~/.bin/tm/icns /Applications/TextMate.app/Contents/Resources/TextMate.icns'
+alias chrome='open -a "Google Chrome" --args --auto-open-devtools-for-tabs'
 
 alias localhost='cd /Library/WebServer/Documents'
 alias sites='cd $HOME/Sites'
