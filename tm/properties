@@ -8,11 +8,11 @@ tabSize          = 4
 
 saveOnBlur       = true
 
-myExtraIncludes  = ".tm_properties,.htaccess,.gitignore"
+myExtraIncludes  = ".tm_properties,.htaccess,.gitignore,.storybook"
 fileBrowserGlob  = "{*,$myExtraIncludes}"
 include          = "{$include,$myExtraIncludes}"
 
-myExtraExcludes       = "log,coverage,output,node_modules,vendor,tmp,api_metadata,code_mirror"
+myExtraExcludes       = "api_metadata,assets,code_mirror,coverage,log,node_modules,output,tmp,translations,vendor,zxcvbn.js,webpack.records.en-US.json"
 excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
