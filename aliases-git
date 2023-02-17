@@ -16,7 +16,7 @@ alias deldone='up && if [[ `git rev-parse --abbrev-ref HEAD` == "master" ]]; the
 alias undolastrev='git reset --soft HEAD~1'
 alias rebase='up && git stash && git rebase origin/master && git stash pop'
 alias msq='up && git merge origin/master && git reset origin/master'
-alias ggc='rm -rf .git/gc.log && git prune && git gc --prune && git fsck'
+alias ggc='rm -rf .git/gc.log && git reflog expire --all --stale-fix && git prune && git gc --prune && git fsck'
 
 reset () {
 	git reset HEAD "$@"
