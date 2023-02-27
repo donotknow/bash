@@ -19,7 +19,7 @@ alias brc='mate $HOME/.bin/bashrc'
 alias zrc='mate $HOME/.bin/zshrc'
 alias src='source $HOME/.bin/zshrc'
 
-alias sag='sudo apachectl graceful'
+alias sag='brew services restart httpd'
 
 alias size='du -s -h'
 alias kext='kextstat >> ~/Desktop/kextstat'
@@ -38,7 +38,7 @@ alias delete='del'
 alias cpmateicon='cp ~/.bin/tm/icns /Applications/TextMate.app/Contents/Resources/TextMate.icns'
 alias chrome='open -a "Google Chrome" --args --auto-open-devtools-for-tabs'
 
-alias localhost='cd /Library/WebServer/Documents'
+alias localhost='cd /opt/homebrew/var/www'
 alias sites='cd $HOME/Sites'
 
 alias github='stree'
