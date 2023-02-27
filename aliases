@@ -16,7 +16,8 @@ alias lgl='ls -ga $LBO_LS_COLOR'
 alias rm='rm -i'
 
 alias brc='mate $HOME/.bin/bashrc'
-alias src='source $HOME/.bash_profile'
+alias zrc='mate $HOME/.bin/zshrc'
+alias src='source $HOME/.bin/zshrc'
 
 alias sag='sudo apachectl graceful'
 
