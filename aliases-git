@@ -10,6 +10,8 @@ alias dif_master='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git me
 alias diff_master='dif_master'
 alias _diff_master_name_only='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff --name-only $MERGE_BASE..$BRANCH --diff-filter=ACMRTUXB && unset BRANCH MERGE_BASE'
 alias _diff_dirty_name_only='git status --porcelain | grep -v "^[[:space:]]*D" | cut -c4- | sed "s/^.* -> //g"'
+alias latest_sha='up && git rev-list HEAD | head -1 | xargs git rev-parse --short'
+alias latestsha='latest_sha'
 alias tickle='FILES="`_diff_master_name_only` `_diff_dirty_name_only`" && echo $FILES | sort -u | xargs touch && unset FILES'
 alias touchst='tickle'
 alias deldone='up && if [[ `git rev-parse --abbrev-ref HEAD` == "master" ]]; then git branch --merged | grep -v "^*" | xargs git branch -d; fi'
