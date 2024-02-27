@@ -6,7 +6,6 @@ alias unstage='st -s | cut -c4- | sed "s/ -> /☃/" | tr "☃" "\n" | xargs git 
 alias editst='st -s | cut -c4- | xargs mate'
 alias base_sha='BRANCH=`git rev-parse --abbrev-ref HEAD` && git merge-base origin/master $BRANCH && unset BRANCH'
 alias basesha='base_sha'
-alias dif_master='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff $MERGE_BASE..$BRANCH'
 alias diff_master='dif_master'
 alias _diff_master_name_only='BRANCH=`git rev-parse --abbrev-ref HEAD` && MERGE_BASE=`git merge-base origin/master $BRANCH` && git diff --name-only $MERGE_BASE..$BRANCH --diff-filter=ACMRTUXB && unset BRANCH MERGE_BASE'
 alias _diff_dirty_name_only='git status --porcelain | grep -v "^[[:space:]]*D" | cut -c4- | sed "s/^.* -> //g"'
@@ -19,6 +18,13 @@ alias undolastrev='git reset --soft HEAD~1'
 alias rebase='up && git stash && git rebase origin/master && git stash pop'
 alias msq='up && git merge origin/master && git reset origin/master'
 alias ggc='rm -rf .git/gc.log && git reflog expire --all --stale-fix && git prune && git gc --prune && git fsck'
+
+dif_master () {
+	BRANCH="${1:=$(git rev-parse --abbrev-ref HEAD)}"
+	MERGE_BASE=$(git merge-base origin/master $BRANCH)
+	git diff $MERGE_BASE..$BRANCH
+	unset BRANCH MERGE_BASE
+}
 
 reset () {
 	git reset HEAD "$@"
