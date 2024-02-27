@@ -27,3 +27,7 @@ fi
 [[ -r $HOME/.bin/personal ]] && source $HOME/.bin/personal
 
 export PS1="\[${White}\]\W\[${Yellow}\]\$(__git_ps1 '(%s)') \[${White}\]\u\[${PROMPT_COLOR}\]\$\[${Color_Off}\] "
+
+# fix up ssh
+# eval "$(/usr/bin/ssh-agent -s)" > $HOME/Library/Logs/ssh-agent.log
+/usr/bin/ssh-add --apple-load-keychain 2>/dev/null
