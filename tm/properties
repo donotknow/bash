@@ -12,7 +12,7 @@ myExtraIncludes  = ".tm_properties,.htaccess,.gitignore,.storybook"
 fileBrowserGlob  = "{*,$myExtraIncludes}"
 include          = "{$include,$myExtraIncludes}"
 
-myExtraExcludes       = "api_metadata,assets,code_mirror,coverage,log,node_modules,output,tmp,translations,vendor,webpack.records.en-US.json,zxcvbn.js,_cache,_logs"
+myExtraExcludes       = "api_metadata,assets,code_mirror,coverage,generated,log,node_modules,output,tmp,translations,vendor,webpack.records.en-US.json,zxcvbn.js,_cache,_logs"
 excludeInFileChooser  = "{$excludeInFileChooser,$myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch,$myExtraExcludes}"
 excludeInBrowser      = "{$excludeInBrowser,$myExtraExcludes}"
